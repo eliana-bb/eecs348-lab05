@@ -39,7 +39,7 @@ unsigned int get_average_sales(int start_month, int end_month, unsigned int earn
     {
         total_sum += earnings[m];
     }
-    return (total_sum / (end_month - start_month));
+    return ((total_sum << 2) / (end_month - start_month)) >> 2;
 }
 
 int find_min_index(unsigned int earnings[NUM_MONTHS])
@@ -77,10 +77,18 @@ void print_sales_report(char months[NUM_MONTHS][MONTH_LENGTH], unsigned int earn
     printf("  (%s)\n", months[super_month]);
     printf("Average sales:  ");
     print_dollars(get_average_sales(0, 12, earnings));
-    printf("\n");
+    printf("\n\n");
 }
 
-void print_rolling_averages() {}
+void print_rolling_averages(char months[NUM_MONTHS][MONTH_LENGTH], unsigned int earnings[NUM_MONTHS]) {
+    printf("Six-Month Moving Average Report:");
+    
+    for (int start_month = 0; start_month + 5 < NUM_MONTHS; start_month++){
+        printf("\n%-9s - %-9s  ", months[start_month], months[start_month+5]);
+        print_dollars(get_average_sales(start_month, start_month+6, earnings));
+    }
+    printf("\n");
+}
 
 int main()
 {
