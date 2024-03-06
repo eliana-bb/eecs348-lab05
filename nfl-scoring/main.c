@@ -5,7 +5,7 @@
 #define SCORE_FG 3
 #define SCORE_SAFETY 2
 
-void print_score_arrangement(int td_2pc, int td_ep, int td, int fg, int safety) { printf("%d TD+2PC, %d TD+EP, %d TD, %d FG, %d Safety\n", td_2pc, td_ep, td, fg, safety); }
+void print_score_arrangement(int td_2pc, int td_ep, int td, int fg, int safety) { printf("%d TD+2pt, %d TD+FG, %d TD, %d 3pt FG, %d Safety\n", td_2pc, td_ep, td, fg, safety); }
 
 int get_score(int td_2pc, int td_ep, int td, int fg, int safety) { return SCORE_TD_2PC * td_2pc + SCORE_TD_EP * td_ep + SCORE_TD * td + SCORE_FG * fg + SCORE_SAFETY * safety; }
 
@@ -31,6 +31,7 @@ int main()
         int td = 0;
         int fg = 0;
         int safety = 0;
+        printf("Possible combinations of scoring plays:\n");
         while (1)
         {
             if (get_score(td_2pc, td_ep, td, fg, safety) == target_score)
