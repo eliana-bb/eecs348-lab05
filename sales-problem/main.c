@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <strings.h>
 #define NUM_MONTHS 12
 
 unsigned int getcents() {
