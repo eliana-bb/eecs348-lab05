@@ -11,30 +11,57 @@ int get_score(int td_2pc, int td_ep, int td, int fg, int safety) { return SCORE_
 
 int main()
 {
+    printf("Enter 0 or 1 to STOP.\n");
     int target_score = 0;
     while (1)
     {
-        printf("Enter 0 or 1 to STOP\nEnter the NFL score: ");
+        printf("Enter the NFL score: ");
         scanf("%d", &target_score);
         if (target_score < 2)
         {
             return 0;
         }
         const int MAX_TD_2PC = target_score / SCORE_TD_2PC;
-        const int MAX_TD_EP = target_score / SCORE_TD_2PC;
+        const int MAX_TD_EP = target_score / SCORE_TD_EP;
         const int MAX_TD = target_score / SCORE_TD;
         const int MAX_FG = target_score / SCORE_FG;
         const int MAX_SAFETY = target_score / SCORE_SAFETY;
-        int td_2pc, td_ep, td, fg, safety = 0;
+        int td_2pc = 0;
+        int td_ep = 0;
+        int td = 0;
+        int fg = 0;
+        int safety = 0;
         while (1)
         {
-            if (get_score(td_2pc, td_ep, td, fg, safety) == target_score) print_score_arrangement(td_2pc, td_ep, td, fg, safety);
+            if (get_score(td_2pc, td_ep, td, fg, safety) == target_score)
+            {
+                print_score_arrangement(td_2pc, td_ep, td, fg, safety);
+            }
             safety++;
-            if (safety > MAX_SAFETY) {safety = 0; fg++;}
-            if (fg > MAX_FG) {fg = 0; td++;}
-            if (td > MAX_TD) {td = 0; td_ep++;}
-            if (td_ep > MAX_TD_EP) {td_ep=0; td_2pc++;}
-            if (td_2pc > MAX_TD_2PC) break;
+            if (safety > MAX_SAFETY)
+            {
+                safety = 0;
+                fg++;
+            }
+            if (fg > MAX_FG)
+            {
+                fg = 0;
+                td++;
+            }
+            if (td > MAX_TD)
+            {
+                td = 0;
+                td_ep++;
+            }
+            if (td_ep > MAX_TD_EP)
+            {
+                td_ep = 0;
+                td_2pc++;
+            }
+            if (td_2pc > MAX_TD_2PC)
+            {
+                break;
+            }
         }
     }
 }
